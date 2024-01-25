@@ -5,6 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Password generator</title>
 
+        <?php
+            require_once __DIR__ . "/partials/functions.php";
+
+            session_start();
+
+            $color = "red";
+        ?>
+
     </head>
     <body style="text-align:center; padding-top:3%">
         <h1 style="margin-bottom:50px;">Password generator</h1>
@@ -21,40 +29,13 @@
 
             if ($pws_lng > 0) {
 
-                $charSet = "";
-
-                for ($x=ord('a');$x<=ord('z');$x++) {
-
-                    $charSet .= chr($x);
-                }
-                for ($x=ord('A');$x<=ord('Z');$x++) {
-
-                    $charSet .= chr($x);
-                }
-                for ($x=ord('0');$x<=ord('9');$x++) {
-
-                    $charSet .= chr($x);
-                }
-                for ($x=ord('!');$x<=ord('/');$x++) {
-
-                    $charSet .= chr($x);
-                }
-
-                $pws = "";
-                
-                for ($x=0;$x<$lng;$x++) {
-
-                    $rndCharIndex = rand(0, strlen($charSet)-1);
-                    $rndChar = $charSet[$rndCharIndex];
-
-                    $pws .= $rndChar;
-                }
+                $pws = getPws($pws_lng);
 
             }
         ?>
 
-    <h2 style="color:black;">
-        Ecco la tua password: 
+    <h2>
+        La tua password e': 
         <?php echo $pws; ?>
     </h2>
 
